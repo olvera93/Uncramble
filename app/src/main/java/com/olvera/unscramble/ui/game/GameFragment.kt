@@ -32,6 +32,7 @@ class GameFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentGameBinding.inflate(inflater, container, false)
         Log.d("GameFragment", "GameFragment created/re-created!")
+        Log.d("GameFragment","Word: ${viewModel.currentScrambleWord} " + "Score: ${viewModel.score} WordCount: ${viewModel.currentWordCount}")
         return binding.root
     }
 
@@ -48,7 +49,7 @@ class GameFragment : Fragment() {
         updateNextWordOnScreen()
         binding.apply {
             score.text = getString(R.string.score, 0)
-            wordCount.text = getString(R.string.word_count, 0, MAX_NO_OF_WORDS)
+            wordCount.text = getString(R.string.word_count, 1, MAX_NO_OF_WORDS)
         }
 
 
@@ -64,7 +65,19 @@ class GameFragment : Fragment() {
      * Displays the next scrambled word.
      */
     private fun onSubmitWord() {
+        val playerWord = binding.textInputEditText.text.toString()
 
+        if (viewModel.isUserWordCorrect(playerWord)) {
+            setErrorTextField(false)
+            if (viewModel.nextWord()) {
+                updateNextWordOnScreen()
+                binding.score.text = getString(R.string.score, viewModel.score)
+            } else {
+                showFinalScoreDialog()
+            }
+        } else {
+            setErrorTextField(true)
+        }
     }
 
     /**
@@ -72,6 +85,12 @@ class GameFragment : Fragment() {
      * increases the word count
      */
     private fun onSkipWord() {
+        if (viewModel.nextWord()) {
+            setErrorTextField(false)
+            updateNextWordOnScreen()
+        } else {
+            showFinalScoreDialog()
+        }
 
     }
 
@@ -91,6 +110,7 @@ class GameFragment : Fragment() {
      * restart the game.
      */
     private fun restartGame() {
+        viewModel.reinitializeData()
         setErrorTextField(false)
         updateNextWordOnScreen()
     }
@@ -120,6 +140,7 @@ class GameFragment : Fragment() {
      */
     private fun updateNextWordOnScreen(){
         binding.textViewUnscrambledWord.text = viewModel.currentScrambleWord
+        binding.wordCount.text = getString(R.string.word_count, viewModel.currentWordCount, MAX_NO_OF_WORDS)
     }
 
     /**
