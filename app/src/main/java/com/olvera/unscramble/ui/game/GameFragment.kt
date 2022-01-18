@@ -99,7 +99,7 @@ class GameFragment : Fragment() {
      */
 
     private fun getNextScrambledWord(): String {
-        val tempWord = allWordsList.random().toCharArray()
+        val tempWord = allWordsListEn.random().toCharArray()
         tempWord.shuffle()
         return String(tempWord)
     }

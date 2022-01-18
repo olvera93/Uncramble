@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">Unscramble</string>
 
-    <string name="instructions">Unscramble the word using all the letters.</string>
-    <string name="skip">Skip</string>
-    <string name="submit">Submit</string>
+    <string name="instructions">Descifra la palabra usando todas las letras.</string>
+    <string name="skip">Saltar</string>
+    <string name="submit">Enviar</string>
     <string name="score">Score: %d</string>
-    <string name="word_count">%d of %d words</string>
-    <string name="enter_your_word">Enter your word</string>
-    <string name="congratulations">Congratulations!</string>
-    <string name="you_scored">"You scored: %d"</string>
-    <string name="exit">Exit</string>
-    <string name="play_again">Play Again</string>
-    <string name="try_again">Try Again!</string>
+    <string name="word_count">%d de %d palabras</string>
+    <string name="enter_your_word">Introduce tu palabra</string>
+    <string name="congratulations">Felicidades!</string>
+    <string name="you_scored">"Tu puntuación fue de: %d"</string>
+    <string name="exit">Salir</string>
+    <string name="play_again">Jugar de nuevo</string>
+    <string name="try_again">Intentar de nuevo!</string>
 </resources>
